@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Chua BT1 Day7 - JavaS</title>
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+</head>
+<body>
+	
+	<form class="container" onsubmit="return handleSubmit();">
+		<h2>Thực hành toán tử số học</h2>
+		<div class="form-group">
+			<label>Nhập vào số a</label>
+			<input type="number" class="form-control" id="number1">
+		</div>
+		<input type="submit" class="btn btn-primary" value="Kiểm tra" />
+
+		<div id="result" style="color: red;"></div>
+	</form>	
+
+	<script type="text/javascript">
+		function handleSubmit(){
+			//lấy giá trị input
+			var obj_number1 = document.getElementById('number1');
+			var number1 = obj_number1.value;
+			var result = "";
+
+			if ((number1 >= 1 && number1 <= 10) || (number1 >= 50 && number1 <= 100)) {
+				result = number1 + " nằm trong khoảng 1 - 10 hoặc 50 - 100";
+			}
+			else {
+				result = number1 + " ko nằm trong khoảng 1 - 10 hoặc 50 - 100";
+			}
+			document.getElementById('result').innerHTML = result;
+			return false;
+		}
+	</script>
+</body>

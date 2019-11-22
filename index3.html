@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Chua BT1 Day7 - JavaS</title>
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+</head>
+<body>
+	<form class="container" onsubmit="return checkPrimeNumber();">
+		<h2>Kiểm tra số nguyên tố</h2>
+		<div class="form-group">
+			<label>Nhập vào số a</label>
+			<input type="number" class="form-control" id="prime">
+		</div>
+		<input type="submit" class="btn btn-primary" value="Kiểm tra" />
+
+		<div id="result_prime" style="color: red;"></div>
+	</form>	
+	<script type="text/javascript">
+		function checkPrimeNumber(){
+			var obj_prime = document.getElementById('prime');
+			var prime = obj_prime.value;
+			var result = "";
+
+			if(prime < 2)
+				result = "Số " + prime + " ko phải là số nguyên tố";
+			else{
+				var isPrime = true;
+				for(var i=2; i <= Math.sqrt(prime); i++){
+					if(prime % i == 0){
+						isPrime = false;
+						break;
+					}
+				}
+				if(isPrime) {
+					result = "Số " + prime + " là số nguyên tố";
+				}else{
+					result = "Số " + prime + " ko phải là số nguyên tố";
+				}
+			}
+			document.getElementById('result_prime').innerHTML = result;
+
+			return false;
+		}
+	</script>
+</body>

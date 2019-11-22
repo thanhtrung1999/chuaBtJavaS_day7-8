@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Chua BT1 Day7 - JavaS</title>
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+</head>
+<body>
+	
+	<form class="container" onsubmit="return false;">
+	  <h2>Thực hành toán tử số học</h2>
+	  <div class="form-group">
+	    <label>Nhập vào số a</label>
+	    <input type="text" class="form-control" id="number1">
+	  </div>
+	  <div class="form-group">
+	    <label>Nhập vào số b</label>
+	    <input type="text" class="form-control" id="number2">
+	  </div>
+
+	  <button type="submit" class="btn btn-primary mb-3" onclick="calculator('+')">a + b</button>
+	  <button type="submit" class="btn btn-success mb-3" onclick="calculator('-')">a - b</button>
+	  <button type="submit" class="btn btn-danger mb-3" onclick="calculator('*')">a * b</button>
+	  <button type="submit" class="btn btn-warning mb-3" onclick="calculator('/')">a / b</button>
+	  <button type="submit" class="btn btn-info mb-3" onclick="calculator('%')">a % b</button>
+	  <button type="submit" class="btn btn-success mb-3" onclick="calculator('a++')">a++</button>
+	  <button type="submit" class="btn btn-primary mb-3" onclick="calculator('++a')">++a</button>
+	  <button type="submit" class="btn btn-success mb-3" onclick="calculator('a--')">a--</button>
+	  <button type="submit" class="btn btn-warning mb-3" onclick="calculator('--a')">--a</button>
+	  <button type="reset" class="btn btn-warning mb-3">Reset dữ liệu</button>
+	  <div id="error" style="color: green;"></div>
+	  <div id="result" style="color: red;"></div>
+	</form>	
+	<script type="text/javascript">
+		function calculator(operator){
+			var error = "";
+			var result = "";
+			var sum = 0;
+			//lấy ra giá trị của 2 số truyền vào
+			var obj_number1 = document.getElementById('number1');
+			var number1 = obj_number1.value;
+			var obj_number2 = document.getElementById('number2');
+			var number2 = obj_number2.value;
+
+			//check validate
+			if(number1 == '' || number2 == '') {
+				error = "Không được để trống";
+			}
+			else if (isNaN(number1) == true || isNaN(number2) == true) {
+				error = "Yêu cầu nhập số"
+			}
+			else {
+				number1 = parseInt(number1);
+				number2 = parseInt(number2);
+				switch(operator){
+					case '+': {
+						sum = number1 + number2;
+						result = 'a + b = ' + sum ;
+						break; 
+					}
+					case '-': {
+						result = number1 - number2; 
+						break;
+					}
+					case '*': {
+						result = number1 * number2; 
+						break;
+					}
+					case '/': {
+						result = number1 / number2; 
+						break;
+					}
+					case '%': {
+						result = number1 % number2; 
+						break;
+					}
+					case 'a++': {
+						result = number1++;
+						break;
+					}
+					case '+aa': {
+						result = ++number1;
+						break;
+					}
+					case 'a--': {
+						result = number1--; 
+						break;
+					}
+					case '--a': {
+						result = --number1; 
+						break;
+					}
+				}
+			}
+			document.getElementById('error').innerHTML = error;
+			document.getElementById('result').innerHTML = result;
+		}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chữa TH 1 ngày 8</title>
+
+</head>
+<body>
+	<form onsubmit="return sendInfo()">
+		Name: <input type="text" id="name" /><br/>
+		Email: <input type="text" id="email" /><br/>
+		Country:
+		<select id="country">
+			<option value="-1">Select-country</option>
+			<option value="1">Viet Nam</option>
+			<option value="2">Japan</option>
+			<option value="3">USA</option>
+		</select>
+		<br/>
+		Gender: 
+		<input type="radio" name="gender" value="1"> Male
+		<input type="radio" name="gender" value="2"> Famale <br/>
+		<input type="submit" value="Send Info">
+	</form>
+	<div id="error" style="color: red"></div>
+	<div id="result" style="color: green"></div>
+	<script type="text/javascript">
+		function sendInfo(){
+			var error = "";
+			var result = "";
+
+			var obj_name = document.getElementById('name');
+			var name = obj_name.value;
+
+			var obj_email = document.getElementById('email');
+			var email = obj_email.value;
+
+			var obj_country = document.getElementById('country');
+			var country = obj_country.value;
+
+			// lấy ra vị trí của ký tự @ trong email
+			// hàm này trả vể vị trí xuất hiện đầu tiên của ký tự @ trong chuỗi email của bạn
+			var a_position = email.indexOf('@'); //abc@ - trả vể 3 
+			// lấy ra vị trí xuất hiện cuối cùng của ký tự
+			var dot_position = email.lastIndexOf('.');
+
+			if(name == '') {
+				error = "Ko được để trống trường name";
+				obj_name.focus();
+			}
+			else if(email == '') {
+				error = "Ko được để trống trường email";
+				obj_email.focus();
+			}
+			else if(country == -1) {
+				error = "Cần phải chọn Country";
+				obj_country.focus();
+			}
+
+			// kiểm tra xem email có hợp lệ hay ko
+			else if(a_position == 0 || dot_position - a_position < 2){
+				error = "Email ko đúng định dạng, email ko cho phép ký tự @ đứng đầu tiên, và ký tự . cuối cùng ko thể đứng trước ký tự @";
+				obj_email.focus();
+			}
+
+			//ko chọn radio thì báo lỗi, và focus vào radio
+			//
+			else{
+				window.open("mailto: "+email);
+			}
+
+			document.getElementById('error').innerHTML = error;
+			document.getElementById('result').innerHTML = result;
+
+			return false;
+		}
+	</script>
+</body>
+</html>
